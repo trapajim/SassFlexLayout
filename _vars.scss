@@ -1,0 +1,44 @@
+//spacing
+$contentWidth: 950px;
+$gridColumns: 12;
+$gutterWidth: 1%; 
+$auto: 0 auto;
+
+//colors
+$blue: #22a7f0;
+$green: #78ff00;
+$red: #e93f33;
+$lightGray: #A0A0A0;
+$darkGray: #73757a;
+$white: #ffffff;
+$black: #000000;
+
+//elements
+$buttonBackgroundColor: #35b4ed;
+$attentionColor: $green;
+$cautionColor: $red;
+$mainColor: $blue;
+$linkColor: $blue;
+$linkHover: darken($blue, 20%);
+$borderRadius: 5px;
+
+//typo
+//$fontFamily: 'Source Sans Pro', arial, sans-serif;
+$fontFamily: "Helvetica Neue",Helvetica,Arial,sans-serif;
+$sizeH1: 36px;
+$sizeH2: 30px;
+$sizeH3: 24px;
+$sizeH4: 18px;
+$sizeH5: 14px;
+$sizeH6: 10px;
+$fontThin: 200;
+$fontNormal: 400;
+$fontThick: 700;
+
+
+
+//breakpoints
+$bpLarge: 768px;
+$bpMedium: $bpLarge;
+$bpSmall: 480px;
+$bpXs: 320px;

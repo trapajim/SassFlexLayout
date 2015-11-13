@@ -1,0 +1,163 @@
+@import "vars", "mixins";
+ 
+//----- CSS RESETS
+* {
+  -moz-box-sizing: border-box; /* Firefox, other Gecko */
+  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+  box-sizing: border-box; /* Opera/IE 8+ */
+}
+img {
+  border:0 none;
+}
+html {
+  width:100%;
+  height:100%;
+  min-height:100%;
+}
+body {
+  margin: 0;
+  padding: 0;
+  z-index: 0;
+  width: 100%;
+  line-height: 1;
+  background:#fafafa;
+  font-family: $fontFamily;
+  -webkit-font-smoothing: antialiased;
+  @media screen and (max-width: 768px) {
+    height: auto;
+  }
+}
+a {
+  color:$blue;
+  text-decoration: none;
+  &:hover {
+    color: $linkHover;
+  }
+}
+
+h1{font-size: $sizeH1};
+h2{font-size: $sizeH2};
+h3{font-size: $sizeH3};
+h4{font-size: $sizeH4};
+h5{font-size: $sizeH5};
+h6{font-size: $sizeH6};
+.font_thin{font-weight: $fontThin;}
+.font_normal{font-weight: $fontNormal;}
+.font_thick{font-weight: $fontThick;}
+.hidden {display: none;}
+.show {display: block;}
+ // grid
+.grid_container{
+  @include flex-grid-container(wrap);
+}
+// gird system 
+@for $i from 1 through $gridColumns {
+    .grid_lg_#{$i} {
+      @include bp-large{
+        @include flex-grid-item($i, true, $gutterWidth);
+      }
+    }
+}
+
+@for $i from 1 through $gridColumns {
+  .grid_md_#{$i} {
+    @include bp-medium {
+      @include flex-grid-item($i, true, $gutterWidth);
+    }
+  }
+}
+
+@for $i from 1 through $gridColumns {
+  .grid_sm_#{$i} {
+    @include bp-small {
+      @include flex-grid-item($i, true, $gutterWidth);
+    }
+  }
+}
+ 
+@for $i from 1 through $gridColumns {
+  .grid_xs_#{$i} {
+    @include bp-extrasmall{
+      @include flex-grid-item($i, true, $gutterWidth);
+    }
+  }
+}
+
+.flex_box{
+    @include flexbox;
+}
+.align_center {
+  align-items: center;
+  justify-content: center;
+}
+
+//buttons
+.btn{
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-image: none;
+  border: 1px solid transparent;
+  @include border-radius($borderRadius);
+  &.btn_default{
+    color: $darkGray;
+    background-color: $white;
+    border-color: $lightGray;
+    &:hover{
+      background-color: darken($white,10%);
+    }
+  }
+  &.btn_blue_line{
+    color: $darkGray;
+    background-color: transparent;
+    border-color: $blue;
+    &:hover{
+      background-color: $blue;
+      color: white;
+    }
+  }
+  &.btn_blue_fill{
+    color: $white;
+    background-color: $blue;
+    &:hover{
+      background-color: darken($blue,10%);
+    }
+  }
+  &.btn_white_line{
+    color: $darkGray;
+    background-color: transparent;
+    border-color: $white;
+    &:hover{ 
+      background-color: darken($white,10%);
+    }
+  }
+  &.btn_block{
+    display: block;
+  }
+}
+
+.img_responsive{
+  max-width: 100%;
+  height: auto; 
+  display: block;
+}
+// border-radius
+.border_radius{
+  @include border-radius($borderRadius);
+}
+.border_round{
+  @include border-radius(50%);
+}

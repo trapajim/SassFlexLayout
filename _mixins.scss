@@ -1,0 +1,205 @@
+
+//function
+@function gutter-value($arg, $gutter) {
+  @if $gutter {
+    $value: percentage(1 / $arg) - 1%;
+  } @else {
+    $value: percentage(1 / $arg);
+  }
+  @return $value
+}
+//mixins
+@mixin border-radius($borderRadius) {
+  -webkit-border-radius: $borderRadius;
+  -moz-border-radius: $borderRadius;
+  border-radius: $borderRadius;
+}
+@mixin box-shadow($boxShadow...) {
+  -moz-box-shadow: $boxShadow;
+  -webkit-box-shadow: $boxShadow;
+  -ms-box-shadow: $boxShadow;
+  -o-box-shadow: $boxShadow;
+  box-shadow: $boxShadow;
+}
+@mixin flexbox{
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+}
+
+@mixin flex-grid-container($wrap: null) {
+  @include flexbox;
+  -webkit-flex-wrap: $wrap;
+  -moz-flex-wrap: $wrap;
+  -ms-flex-wrap: $wrap;
+  flex-wrap: $wrap;
+  @if $wrap {
+    justify-content: space-between;
+  }
+}
+
+@mixin flex-grid-item($arg, $gutter: null, $margin: null) {
+  -moz-flex-basis: gutter-value($arg, $gutter);
+  -ms-flex-basis: gutter-value($arg, $gutter);
+  -webkit-flex-basis: gutter-value($arg, $gutter);
+  flex-basis: gutter-value($arg, $gutter);
+  @if $margin != null {
+    margin-bottom: $margin;
+    &:nth-last-child(-n+#{$arg}) {
+      margin-bottom: 0;
+    }
+  }
+}
+
+//border radius directions
+@mixin border-top-radius ($borderRadius){
+    -webkit-border-top-left-radius: $borderRadius;
+    -webkit-border-top-right-radius: $borderRadius;
+    -moz-border-radius-topleft: $borderRadius;
+    -moz-border-radius-topright: $borderRadius;
+    border-radius: $borderRadius $borderRadius 0 0;
+}
+@mixin border-bottom-radius ($borderRadius){
+    -webkit-border-bottom-left-radius: $borderRadius;
+    -webkit-border-bottom-right-radius: $borderRadius;
+    -moz-border-radius-bottomleft: $borderRadius;
+    -moz-border-radius-bottomright: $borderRadius;
+    border-radius: 0 0 $borderRadius $borderRadius;
+}
+@mixin border-left-radius ($borderRadius){
+    -webkit-border-top-left-radius: $borderRadius;
+    -webkit-border-bottom-left-radius: $borderRadius;
+    -moz-border-radius-topleft: $borderRadius;
+    -moz-border-radius-bottomleft: $borderRadius;
+    border-radius: $borderRadius 0 0 $borderRadius;
+}
+@mixin border-right-radius ($borderRadius){
+    -webkit-border-top-right-radius: $borderRadius;
+    -webkit-border-bottom-right-radius: $borderRadius;
+    -moz-border-radius-topright: $borderRadius;
+    -moz-border-radius-bottomright: $borderRadius;
+    border-radius: 0 $borderRadius $borderRadius 0;
+}
+ 
+//for use of custom transitions
+@mixin transition($transition) {
+     -webkit-transition: $transition;
+        -moz-transition: $transition;
+         -ms-transition: $transition;
+          -o-transition: $transition;
+             transition: $transition;
+}
+
+//Add opacity to elements
+@mixin opacity($opacity){
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=#{$opacity}*10)";
+    filter: alpha(opacity=#{$opacity}*100);
+    -moz-opacity: $opacity;
+    -khtml-opacity: $opacity;
+    opacity: $opacity;
+}
+
+@mixin clearfix() {
+    zoom: 1;
+    &:before,
+    &:after {
+        display: table;
+        content: "";
+        zoom: 1;
+    }
+    &:after {
+        clear: both;
+    }
+}
+
+/* animations */
+@mixin keyframes($animation-name) {
+    @-webkit-keyframes #{$animation-name} {
+        @content;
+    }
+    @-moz-keyframes #{$animation-name} {
+        @content;
+    }  
+    @-ms-keyframes #{$animation-name} {
+        @content;
+    }
+    @-o-keyframes #{$animation-name} {
+        @content;
+    }  
+    @keyframes #{$animation-name} {
+        @content;
+    }
+}
+
+@mixin animation($str) {
+  -webkit-animation: #{$str};
+  -moz-animation: #{$str};
+  -ms-animation: #{$str};
+  -o-animation: #{$str};
+  animation: #{$str};      
+}
+
+/* breakpoints */
+
+@mixin bp-large {
+  @media only screen and (min-width:  $bpLarge) {
+    @content;
+  }
+}
+
+@mixin bp-medium {
+  @media only screen and (max-width:  $bpMedium) {
+    @content;
+  }
+}
+
+@mixin bp-small {
+  @media only screen and (max-width: $bpSmall) {
+    @content;
+  }
+}
+
+@mixin bp-extrasmall {
+  @media only screen and (max-width: $bpXs) {
+    @content;
+  }
+}
+
+// ellipsis
+@mixin ellipsis($line:"",$height:"",$ellipsiswidth:"") {
+  $ellipsiswidth: 3em !default;
+  $line: 1 !default;
+  overflow: hidden;
+  @if $line == 1{
+    display: block;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  } @else {
+    height: $height;
+    line-height: $height/$line;
+    &:before {
+      content:"";
+      float: left;
+      width: 5px; 
+      height: $height; 
+    }
+
+    &> *:first-child {
+      float: right;
+      width: 100%;
+      margin-left: -5px; 
+    }    
+
+    &:after {
+      content: "\02026";
+      float: right; position: relative;
+      top: -19px;
+      left: 100%; 
+      width: $ellipsiswidth; margin-left: -$ellipsiswidth;
+      padding-right: 5px;
+      text-align: right;
+    }
+  }
+}
