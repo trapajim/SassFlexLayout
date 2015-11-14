@@ -1,6 +1,7 @@
 
 //function
 @function gutter-value($arg, $gutter) {
+  $value: 0; 
   @if $gutter {
     $value: percentage(1 / $arg) - 1%;
   } @else {
