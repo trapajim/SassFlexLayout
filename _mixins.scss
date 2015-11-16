@@ -1,11 +1,10 @@
 
 //function
 @function gutter-value($arg, $gutter) {
-  $value: 0; 
   @if $gutter {
-    $value: percentage(1 / $arg) - 1%;
+    $value: $arg / $gridColumns * 100% - 1%;
   } @else {
-    $value: percentage(1 / $arg);
+    $value: $arg / $gridColumns * 100%
   }
   @return $value
 }
@@ -36,9 +35,7 @@
   -moz-flex-wrap: $wrap;
   -ms-flex-wrap: $wrap;
   flex-wrap: $wrap;
-  @if $wrap {
-    justify-content: space-between;
-  }
+  flex-direction: row;
 }
 
 @mixin flex-grid-item($arg, $gutter: null, $margin: null) {
@@ -46,6 +43,8 @@
   -ms-flex-basis: gutter-value($arg, $gutter);
   -webkit-flex-basis: gutter-value($arg, $gutter);
   flex-basis: gutter-value($arg, $gutter);
+  flex-direction: column;
+  max-width: gutter-value($arg, $gutter);
   @if $margin != null {
     margin-bottom: $margin;
     &:nth-last-child(-n+#{$arg}) {
