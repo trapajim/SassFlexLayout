@@ -86,9 +86,20 @@ h6{font-size: $sizeH6};
 .flex_box{
     @include flexbox;
 }
-.align_center {
+.flex_center {
   align-items: center;
   justify-content: center;
+}
+.align_center{
+  margin: 0 auto;
+}
+.list_style_none > li{
+  list-style: none;
+}
+/*container*/
+.container{
+  padding: 10px;
+  background-color: $white;
 }
 
 //buttons
@@ -161,3 +172,10 @@ h6{font-size: $sizeH6};
 .border_round{
   @include border-radius(50%);
 }
+
+/* padding */
+
+.padding_lg{padding:$lgPadding;}
+.padding_md{padding:$mdPadding;}
+.padding_sm{padding:$smPadding;}
+.padding_xs{padding:$xsPadding;}
