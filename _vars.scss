@@ -35,10 +35,14 @@ $fontThin: 200;
 $fontNormal: 400;
 $fontThick: 700;
 
-
-
 //breakpoints
 $bpLarge: 768px;
 $bpMedium: $bpLarge;
 $bpSmall: 480px;
 $bpXs: 320px;
+
+/*paddings and margins*/
+$lgPadding: 20px;
+$mdPadding: 15px;
+$smPadding: 10px;
+$xsPadding: 5px;
