@@ -2,7 +2,7 @@
 //function
 @function gutter-value($arg, $gutter) {
   @if $gutter {
-    $value: $arg / $gridColumns * 100% - 1%;
+    $value: $arg / $gridColumns * 100% - $gutterWidth;
   } @else {
     $value: $arg / $gridColumns * 100%
   }
