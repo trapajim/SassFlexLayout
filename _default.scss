@@ -123,11 +123,14 @@ h6{font-size: $sizeH6};
   background-image: none;
   border: 1px solid transparent;
   @include border-radius($borderRadius);
+  &:focus{
+    outline: 0 !important;
+  }
   &.btn_default{
     color: $darkGray;
     background-color: $white;
     border-color: $lightGray;
-    &:hover{
+    &:hover, &:focus{
       background-color: darken($white,10%);
     }
   }
@@ -135,7 +138,7 @@ h6{font-size: $sizeH6};
     color: $darkGray;
     background-color: transparent;
     border-color: $blue;
-    &:hover{
+    &:hover, &:focus{
       background-color: $blue;
       color: white;
     }
@@ -143,7 +146,7 @@ h6{font-size: $sizeH6};
   &.btn_blue_fill{
     color: $white;
     background-color: $blue;
-    &:hover{
+    &:hover, &:focus{
       background-color: darken($blue,10%);
     }
   }
@@ -151,7 +154,7 @@ h6{font-size: $sizeH6};
     color: $darkGray;
     background-color: transparent;
     border-color: $white;
-    &:hover{ 
+    &:hover, &:focus{ 
       background-color: darken($white,10%);
     }
   }
